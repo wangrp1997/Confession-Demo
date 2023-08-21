@@ -3,18 +3,57 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
   text-align: center;
-  padding: 100px;
+  animation: heartbeat 1s infinite;
 }
 
-h1 {
-  color: #e74c3c;
+.heart {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  transform: rotate(-45deg);
+  margin: 0 auto;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border-radius: 100px;
+  position: absolute;
+}
+
+.heart::before {
+  top: -50px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 50px;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 p {
-  font-size: 18px;
+  font-size: 24px;
   color: #333;
+  margin-top: 20px;
 }
