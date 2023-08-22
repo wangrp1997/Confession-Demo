@@ -1,2 +1,36 @@
-// 这里是空白的，因为我们在 HTML 中已经包含了动画效果的 CSS
-// 如果需要其他 JavaScript 逻辑，可以在这里添加
+const fireworksContainer = document.getElementById('fireworks-container');
+const switchButton = document.getElementById('switch-button');
+let fireworksInterval;
+
+function createFirework() {
+  const firework = document.createElement('div');
+  firework.className = 'firework';
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight;
+  firework.style.left = `${x}px`;
+  firework.style.top = `${y}px`;
+
+  fireworksContainer.appendChild(firework);
+
+  firework.addEventListener('animationend', () => {
+    firework.remove();
+  });
+}
+
+function startFireworks() {
+  fireworksInterval = setInterval(createFirework, 100);
+}
+
+function stopFireworks() {
+  clearInterval(fireworksInterval);
+}
+
+startFireworks();
+
+switchButton.addEventListener('click', () => {
+  if (fireworksInterval) {
+    stopFireworks();
+  } else {
+    startFireworks();
+  }
+});
