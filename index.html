@@ -3,70 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    background-color: black;
-  }
-  #fireworks-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-  .firework {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    animation: explode 2s ease-out;
-  }
-  @keyframes explode {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(10);
-      opacity: 0;
-    }
-  }
-  .text-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 24px;
-    text-align: center;
-    white-space: nowrap;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div id="fireworks-container"></div>
 <div class="text-container">I love you three thousand times</div>
-<script>
-  const fireworksContainer = document.getElementById('fireworks-container');
-
-  function createFirework() {
-    const firework = document.createElement('div');
-    firework.className = 'firework';
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
-    firework.style.left = `${x}px`;
-    firework.style.top = `${y}px`;
-
-    fireworksContainer.appendChild(firework);
-
-    firework.addEventListener('animationend', () => {
-      firework.remove();
-    });
-  }
-
-  setInterval(createFirework, 100);
-</script>
+<button id="switch-button">Switch</button>
+<script src="script.js"></script>
 </body>
 </html>
