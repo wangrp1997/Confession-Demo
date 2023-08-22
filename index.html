@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Love letter to Miki/title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+  }
+  #fireworks-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="heart"></div>
-    <p>Miki</p>
-    <p>I love you three thousand times</p>
-  </div>
-  <script src="script.js"></script>
+<div id="fireworks-container"></div>
+<script>
+  // Fireworks animation logic
+  const fireworksContainer = document.getElementById('fireworks-container');
+
+  function createFirework() {
+    const firework = document.createElement('div');
+    firework.className = 'firework';
+    firework.style.left = `${Math.random() * 100}vw`;
+    firework.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+    const heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.textContent = '❤️';
+
+    firework.appendChild(heart);
+    fireworksContainer.appendChild(firework);
+
+    firework.addEventListener('animationend', () => {
+      firework.remove();
+    });
+  }
+
+  setInterval(createFirework, 1000);
+
+  // Text logic
+  const textContainer = document.createElement('div');
+  textContainer.className = 'text-container';
+  textContainer.textContent = 'I love you three thousand times';
+  document.body.appendChild(textContainer);
+</script>
 </body>
 </html>
