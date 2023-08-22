@@ -1,6 +1,8 @@
 const fireworksContainer = document.getElementById('fireworks-container');
 const switchButton = document.getElementById('switch-button');
+const heartContainer = document.getElementById('heart-container');
 let fireworksInterval;
+let isHeartVisible = false;
 
 function createFirework() {
   const firework = document.createElement('div');
@@ -33,4 +35,14 @@ switchButton.addEventListener('click', () => {
   } else {
     startFireworks();
   }
+  toggleHeartVisibility();
 });
+
+function toggleHeartVisibility() {
+  if (isHeartVisible) {
+    heartContainer.style.opacity = 0;
+  } else {
+    heartContainer.style.opacity = 1;
+  }
+  isHeartVisible = !isHeartVisible;
+}
