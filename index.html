@@ -13,26 +13,52 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    pointer-events: none;
+  }
+  .firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    animation: explode 2s ease-out;
+  }
+  @keyframes explode {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(10);
+      opacity: 0;
+    }
+  }
+  .text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    white-space: nowrap;
   }
 </style>
 </head>
 <body>
 <div id="fireworks-container"></div>
+<div class="text-container">I love you three thousand times</div>
 <script>
-  // Fireworks animation logic
   const fireworksContainer = document.getElementById('fireworks-container');
 
   function createFirework() {
     const firework = document.createElement('div');
     firework.className = 'firework';
-    firework.style.left = `${Math.random() * 100}vw`;
-    firework.style.animationDuration = `${Math.random() * 2 + 1}s`;
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    firework.style.left = `${x}px`;
+    firework.style.top = `${y}px`;
 
-    const heart = document.createElement('span');
-    heart.className = 'heart';
-    heart.textContent = '❤️';
-
-    firework.appendChild(heart);
     fireworksContainer.appendChild(firework);
 
     firework.addEventListener('animationend', () => {
@@ -40,13 +66,7 @@
     });
   }
 
-  setInterval(createFirework, 1000);
-
-  // Text logic
-  const textContainer = document.createElement('div');
-  textContainer.className = 'text-container';
-  textContainer.textContent = 'I love you three thousand times';
-  document.body.appendChild(textContainer);
+  setInterval(createFirework, 100);
 </script>
 </body>
 </html>
